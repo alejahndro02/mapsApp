@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, 
+         OnInit         } from '@angular/core';
+import { LugaresService } from '../../services/lugares.service';
 
 @Component({
   selector: 'app-map-view',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private lugaresService: LugaresService) { }
 
   ngOnInit(): void {
+    console.log(this.lugaresService.useLocations);
   }
 
 }
