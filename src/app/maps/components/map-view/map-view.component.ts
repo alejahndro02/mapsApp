@@ -21,7 +21,7 @@ export class MapViewComponent implements AfterViewInit {
       container: this.mapDivElement.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v11', // style URL
       center: this.lugaresService.useLocations, // starting position [lng, lat]
-      zoom: 9 // starting zoom
+      zoom: 14 // starting zoom
       });
 
   }
