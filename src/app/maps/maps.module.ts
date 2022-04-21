@@ -5,6 +5,8 @@ import { MapViewComponent        } from './components/map-view/map-view.componen
 import { LoadingComponent        } from './components/loading/loading.component';
 import { BtnMyLocationsComponent } from './components/btn-my-locations/btn-my-locations.component';
 import { LogoAngularComponent    } from './components/logo-angular/logo-angular.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 
 
@@ -14,7 +16,9 @@ import { LogoAngularComponent    } from './components/logo-angular/logo-angular.
     MapViewComponent,
     LoadingComponent,
     BtnMyLocationsComponent,
-    LogoAngularComponent
+    LogoAngularComponent,
+    SearchBarComponent,
+    SearchResultComponent
   ],
   imports: [
     CommonModule
