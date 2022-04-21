@@ -6,6 +6,7 @@ import { Map,
          Marker,
          Popup          } from 'mapbox-gl';
 import { LugaresService } from '../../services/lugares.service';
+import { MapService     } from '../../services/map.service';
 
 @Component({
   selector: 'app-map-view',
@@ -15,7 +16,10 @@ import { LugaresService } from '../../services/lugares.service';
 export class MapViewComponent implements AfterViewInit {
   @ViewChild('mapDiv') mapDivElement!:ElementRef
 
-  constructor(private lugaresService: LugaresService) { }
+  constructor(
+    private lugaresService: LugaresService,
+    private mapService:MapService
+    ) { }
 
   ngAfterViewInit(): void {
     if(!this.lugaresService.useLocations) throw Error('No hay lugaresSevce.userLocations')
@@ -36,5 +40,6 @@ export class MapViewComponent implements AfterViewInit {
       .setLngLat(this.lugaresService.useLocations)
       .setPopup(popup)
       .addTo(map)
+    this.mapService.setmap(map);
   }
 }
