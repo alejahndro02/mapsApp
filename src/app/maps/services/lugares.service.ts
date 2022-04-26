@@ -1,8 +1,7 @@
-import { HttpClient     } from '@angular/common/http';
-import { Injectable     } from '@angular/core';
-import { environment    } from '../../../environments/environment'
+import { Injectable      } from '@angular/core';
+import { PlacesApiClient } from '../api';
 import { Feature, 
-         PlacesResponse } from '../interfaces/places';
+         PlacesResponse  } from '../interfaces/places';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +16,8 @@ export class LugaresService {
   }
 
   constructor( 
-    private http: HttpClient ) {
-      this.getUserLocation();
+    private placesApi: PlacesApiClient ) {
+    this.getUserLocation();
    }
 
   async getUserLocation():Promise<[number,number]>{
@@ -38,9 +37,14 @@ export class LugaresService {
   }
   getPlacesByQuery(query:string=""){
     // Evaluar cuando el query es nulo 
+    if(!this.useLocation) throw Error ('No hay userLocations')
+
     this.isLoadingPlaces= true
-    // this.http.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/{query}.json?proximity=-99.08444586145016%2C19.394061899610065&types=place%2Cpostcode%2Caddress&access_token=pk.eyJ1IjoiYWxlamFobmRybyIsImEiOiJjbDB1Ymw0eTIwN3JkM2ttdGp5dXI5M29rIn0.dCeUmYGiS_dgDnStR_D0-w`)
-    this.http.get<PlacesResponse>(`${environment.mapUrl}/${query}.json?proximity=${this.useLocation}&types=place%2Cpostcode%2Caddress&access_token=${environment.mapToken}`)
+    this.placesApi.get<PlacesResponse>(`/${query}.json`, {
+      params:{
+        proximity:this.useLocation?.join(',')
+      }
+    })
     .subscribe(resp =>{
       console.log(resp.features);
       this.isLoadingPlaces = false
