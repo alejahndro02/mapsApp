@@ -6,11 +6,11 @@ import { environment            } from './environments/environment';
 
 import   Mapboxgl                 from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
  
-Mapboxgl.accessToken = 'pk.eyJ1IjoiYWxlamFobmRybyIsImEiOiJjbDB1Ymw0eTIwN3JkM2ttdGp5dXI5M29rIn0.dCeUmYGiS_dgDnStR_D0-w';
+Mapboxgl.accessToken = environment.mapToken
 
 if (!navigator.geolocation){
-  alert('El navegador no soportta la eolocalización')
-  throw new Error('El navegador no soportta la eolocalización')
+  alert('El navegador no soporta la Geolocalización')
+  throw new Error('El navegador no soporta la Geolocalización')
 }
 
 
