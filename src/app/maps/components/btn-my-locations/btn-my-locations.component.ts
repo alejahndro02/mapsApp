@@ -20,7 +20,7 @@ export class BtnMyLocationsComponent{
     if(!this.lugaresService.isUserLocationReady) throw Error('No hay ubicacion');
     if(!this.mapService.isMapReady) throw Error('No esta disponible el mapa');
 
-    this.mapService.flyto(this.lugaresService.useLocations!)
+    this.mapService.flyto(this.lugaresService.useLocation!)
     
   }
 }

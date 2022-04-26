@@ -22,11 +22,11 @@ export class MapViewComponent implements AfterViewInit {
     ) { }
 
   ngAfterViewInit(): void {
-    if(!this.lugaresService.useLocations) throw Error('No hay lugaresSevce.userLocations')
+    if(!this.lugaresService.useLocation) throw Error('No hay lugaresSevce.userLocations')
     const map = new Map({
       container: this.mapDivElement.nativeElement, // container ID
       style: 'mapbox://styles/mapbox/streets-v11', // style URL
-      center: this.lugaresService.useLocations, // starting position [lng, lat]
+      center: this.lugaresService.useLocation, // starting position [lng, lat]
       zoom: 14 // starting zoom
       });
       
@@ -37,7 +37,7 @@ export class MapViewComponent implements AfterViewInit {
       `);
 
     new Marker({color:'red'})
-      .setLngLat(this.lugaresService.useLocations)
+      .setLngLat(this.lugaresService.useLocation)
       .setPopup(popup)
       .addTo(map)
     this.mapService.setmap(map);
