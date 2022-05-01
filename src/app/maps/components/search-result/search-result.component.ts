@@ -1,6 +1,7 @@
 import { Component, 
          OnInit         } from '@angular/core';
 import { Feature        } from '../../interfaces/places';
+import { MapService     } from '../../services';
 import { LugaresService } from '../../services/lugares.service';
 
 @Component({
@@ -9,8 +10,13 @@ import { LugaresService } from '../../services/lugares.service';
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
+  
+  selectedID: string=''
 
-  constructor(private lugaresService: LugaresService) { }
+  constructor(
+      private lugaresService: LugaresService,
+      private mapService:MapService 
+    ) { }
   get isLoadingPlaces():boolean{
     return this.lugaresService.isLoadingPlaces
   }
@@ -20,5 +26,9 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  flyTo(place: Feature){
+    this.selectedID=place.id
+    const [lng, lat]= place.center
+    this.mapService.flyto([lng, lat])
+  }
 }
