@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
     providedIn:'root'
 })
 export class PlacesApiClient extends HttpClient {
-    baseUrl: string ='https://api.mapbox.com/geocoding/v5/mapbox.places' 
+    
+    baseUrl: string = environment.mapUrl 
     
     constructor(handler:HttpHandler){
         super(handler)
@@ -24,7 +25,7 @@ export class PlacesApiClient extends HttpClient {
             params:{
                 limit:5,
                 languaje:'es',
-                acces_token: environment.mapToken,
+                access_token: environment.mapToken,
                 ...options.params
             }
         })
