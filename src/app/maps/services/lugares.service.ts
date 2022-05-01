@@ -37,12 +37,18 @@ export class LugaresService {
   }
   getPlacesByQuery(query:string=""){
     // Evaluar cuando el query es nulo 
+    if(query.length===0){
+      this.places=[];
+      this.isLoadingPlaces=false;
+      return
+    }
+    
     if(!this.useLocation) throw Error ('No hay userLocations')
 
     this.isLoadingPlaces= true
     this.placesApi.get<PlacesResponse>(`/${query}.json`, {
       params:{
-        proximity:this.useLocation?.join(',')
+        proximity:this.useLocation.join(',')
       }
     })
     .subscribe(resp =>{
